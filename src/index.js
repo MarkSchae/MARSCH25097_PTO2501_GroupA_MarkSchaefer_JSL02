@@ -17,3 +17,24 @@ while (taskStatus !== 'done' && taskStatus !== 'doing' && taskStatus !== 'todo')
     alert('Sorry you did not enter a valid status for the task, please enter todo, done, or doing');
     taskStatus = prompt('Please enter the status of the task').toLowerCase();
 }
+
+// Create new object and push to the array
+tasks.push({
+    title: title,
+    description: description,
+    status: taskStatus
+});
+// Display the title and status of completed 'done' tasks in the console
+let doneTasks = false;
+for(let i = 0; i < tasks.length; i++) {
+    if(tasks[i].status === 'done') {
+        console.log(`Title: ${tasks[i].title}`);
+        console.log(`Status: ${tasks[i].status}`);
+        doneTasks = true;
+    }
+}
+
+// If no tasks are marked as 'done' display a motivational message to the user to complete a task in the console
+if(!doneTasks) {
+    console.log('Motivational message, hurry up man what is wrong with you!');
+}
