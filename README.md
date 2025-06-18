@@ -1,4 +1,4 @@
-# Readme for JSL-01
+# Readme for JSL-02
 
 # KanBan Board
 
@@ -81,14 +81,76 @@ Use the Live Server extension in VS Code to view the HTML file.
 You should now see the Kanban board layout with styled columns and cards. The layout will automatically adjust for desktop or mobile views.
 ```
 
-## Example
+## 🧪 Usage Examples
+
+Once you have set up the project and opened `index.html` in a browser:
+
+- You will see a three-column layout representing:
+  - **TODO**: Tasks that need to be started
+  - **DOING**: Tasks currently in progress
+  - **DONE**: Tasks that are completed
+
+- Each task is styled as a card and grouped under the corresponding column.
+
+### Example Visual Layout
 
 ![Desktop Kanban](/images/JSL-01-Desktop.png)
 
 ![Mobile Kanban](/images/JSL-01-Mobile.png)
 
+## 🛠️ JavaScript Functionality
 
+The JavaScript (`index.js`) in the KanBan Board prompts the user to input details for tasks, specifically two tasks:
+
+- **Title**  
+- **Description**  
+- **Status** (must be one of: `todo`, `doing`, or `done`)
+
+The JS validates the status input, converting it to lowercase and repeatedly prompting the user until a valid status is entered. 
+
+After storing the tasks in a variable, the JS logs the title and status of all tasks marked as `done` to the browser console. If no tasks are marked as done, it logs a motivational message encouraging the user to complete a task.
+
+### Key behaviors:
+- The user is prompted for imput.
+- Status input validation ensures only valid statuses are accepted.
+- The inputs are stored in the appropriate variables.
+- The console outputs pertenant information about the tasks.
+
+---
+
+### Example code snippet from `index.js`:
+
+```js
+const tasks = [];
+
+for(let i = 0; i < 2; i++) {
+    const title = prompt(`Please enter the title of task ${i + 1}`);
+    const description = prompt('Please enter the description of the task');
+    let taskStatus = prompt('Please enter the status of the task. Valid status: todo, done, doing').toLowerCase();
+
+    while (taskStatus !== 'done' && taskStatus !== 'doing' && taskStatus !== 'todo') {
+        alert('Invalid status. Please enter todo, done, or doing');
+        taskStatus = prompt('Please enter the status of the task. Valid status: todo, done, doing').toLowerCase();
+    }
+
+    tasks.push({ title, description, status: taskStatus });
+}
+
+let doneTasks = false;
+for(let i = 0; i < tasks.length; i++) {
+    if(tasks[i].status === 'done') {
+        console.log(`Title: ${tasks[i].title}`);
+        console.log(`Status: ${tasks[i].status}`);
+        doneTasks = true;
+    }
+}
+
+if(!doneTasks) {
+    console.log("No tasks completed, let's get to work!");
+}
+```
 ## 🛠️ Future Improvements
 
-- Add interactivity with JS
-- Persisting data via the addition of a server and a backend JS framework/server-side framework
+- Add more interactivity with JS
+- Persisting data via the addition of a server/database and a backend JS framework/server-side framework
+- Enable drag and drop functionality
