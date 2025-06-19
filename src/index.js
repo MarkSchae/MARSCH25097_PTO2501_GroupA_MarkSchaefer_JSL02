@@ -26,8 +26,7 @@ for(let i = 0; i < 2; i++) {
 let doneTasks = false;
 for(let i = 0; i < tasks.length; i++) {
     if(tasks[i].status === 'done') {
-        console.log(`Title: ${tasks[i].title}`);
-        console.log(`Status: ${tasks[i].status}`);
+        console.log(`Title: ${tasks[i].title}, Status: ${tasks[i].status}`);
         doneTasks = true;
     }
 }
